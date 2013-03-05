@@ -22,11 +22,14 @@ int init_module(void)
 	unsigned long int msrl = 0, msrh = 0;
 	unsigned long long int tmp;
 	unsigned long int APIC_ID_Register = 0, APIC_Version_Register = 0;
+	unsigned long int Interrupt_Command_Regisrer_Low = 0, Interrupt_Command_Regisrer_High = 0;
 	asm volatile ("rdmsr":"=a"(msrl),"=d"(msrh):"c"(msr));
 	tmp = ((unsigned long long)msrh << 32 |msrl);
 	APIC_ID_Register	= native_apic_mem_read(0x20);
 	APIC_Version_Register = native_apic_mem_read(0x30);
-	printk(KERN_INFO"Got data from msr:%llx\nLow 32bits:\t %lx\nHigh 32bits:\t %lx\nAPIC_ID_Register:\t%lx\nAPIC_Version_Register:\t%lx\n",tmp,msrl,msrh,APIC_ID_Register,APIC_Version_Register);
+	Interrupt_Command_Regisrer_Low = native_apic_mem_read(0x300);
+	Interrupt_Command_Regisrer_High = native_apic_mem_read(0x310);
+	printk(KERN_INFO"Got data from msr:%llx\nLow 32bits:\t %lx\nHigh 32bits:\t %lx\nAPIC_ID_Register:\t%lx\nAPIC_Version_Register:\t%lx\nInterrupt_Command_Regisrer_High:\t %lx\nInterrupt_Command_Regisrer_Low:\t %lx\n",tmp,msrl,msrh,APIC_ID_Register,APIC_Version_Register, Interrupt_Command_Regisrer_High, Interrupt_Command_Regisrer_Low);
 //	long int port_adidr;
 //	port_addr = (unsigned long)ioremap(0x0000001B,0x8);
 //	printk(KERN_INFO"Got data %lx\n",port_addr);
