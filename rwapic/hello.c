@@ -6,12 +6,7 @@
 
 irq_handler_t irq_handler(int irq, void *dev_id, struct pt_regs *regs)
 {
-	static unsigned char scancode;
-	scancode = inb(0x60);
-	if((scancode == 0x01) ||(scancode == 0x81) )
-	{
-		printk(KERN_INFO "You pressed Esc! \n");
-	}
+	printk(KERN_INFO "Have a Interrupt \n");
 	return(irq_handler_t) IRQ_HANDLED;
 }
 
@@ -30,21 +25,23 @@ int init_module(void)
 	Interrupt_Command_Regisrer_Low = native_apic_mem_read(0x300);
 	Interrupt_Command_Regisrer_High = native_apic_mem_read(0x310);
 	printk(KERN_INFO"Got data from msr:%llx\nLow 32bits:\t %lx\nHigh 32bits:\t %lx\nAPIC_ID_Register:\t%lx\nAPIC_Version_Register:\t%lx\nInterrupt_Command_Regisrer_High:\t %lx\nInterrupt_Command_Regisrer_Low:\t %lx\n",tmp,msrl,msrh,APIC_ID_Register,APIC_Version_Register, Interrupt_Command_Regisrer_High, Interrupt_Command_Regisrer_Low);
+
 //	long int port_adidr;
 //	port_addr = (unsigned long)ioremap(0x0000001B,0x8);
 //	printk(KERN_INFO"Got data %lx\n",port_addr);
-/*
-	result = request_irq(1,(irq_handler_t) irq_handler, IRQF_SHARED,"keyboard_stats_irq",(void*)(irq_handler));
+	result = request_irq(2,(irq_handler_t) irq_handler, IRQF_DISABLED,"IPI Handler", NULL);
 	if(result)
 	{
 		printk(KERN_INFO"Can't get shared interrupt for keyboard\n");
 	}
+	Interrupt_Command_Regisrer_High = 0x00;
+	Interrupt_Command_Regisrer_Low = 0x32;
+	native_apic_mem_write(0x310, Interrupt_Command_Regisrer_High);
+	native_apic_mem_write(0x300, Interrupt_Command_Regisrer_Low);
 	return result;
-	*/
-	return 0;
 }
 
 void cleanup_module(void)
 {
-//	free_irq(1, (void *)(irq_handler));
+	free_irq(2, NULL);
 }
