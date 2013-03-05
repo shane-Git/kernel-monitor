@@ -26,7 +26,7 @@ int init_module(void)
 	tmp = ((unsigned long long)msrh << 32 |msrl);
 	APIC_ID_Register	= native_apic_mem_read(0x20);
 	APIC_Version_Register = native_apic_mem_read(0x30);
-	printk(KERN_INFO"Got data from msr:%llx\nLow 32bits:\t %lx\nHigh 32bits:\t %lx\nAPIC_ID_Register:\t%lx\nAPIC_ID_Register:\t%lx\n",tmp,msrl,msrh,APIC_ID_Register,APIC_Version_Register);
+	printk(KERN_INFO"Got data from msr:%llx\nLow 32bits:\t %lx\nHigh 32bits:\t %lx\nAPIC_ID_Register:\t%lx\nAPIC_Version_Register:\t%lx\n",tmp,msrl,msrh,APIC_ID_Register,APIC_Version_Register);
 //	long int port_adidr;
 //	port_addr = (unsigned long)ioremap(0x0000001B,0x8);
 //	printk(KERN_INFO"Got data %lx\n",port_addr);
