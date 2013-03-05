@@ -43,5 +43,5 @@ int init_module(void)
 
 void cleanup_module(void)
 {
-	free_irq(1, (void *)(irq_handler));
+//	free_irq(1, (void *)(irq_handler));
 }
