@@ -71,3 +71,6 @@ void cleanup_module(void)
 	printk("Unload chdev device from kernel.\n");
 	unregister_chrdev(DEV_NO, DEVICE_NAME);
 }
+
+MODULE_LICENSE("BSD");
+MODULE_AUTHOR("Shane_Wayne<zx0319@gmail.com>");
