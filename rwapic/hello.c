@@ -29,13 +29,13 @@ int init_module(void)
 //	long int port_adidr;
 //	port_addr = (unsigned long)ioremap(0x0000001B,0x8);
 //	printk(KERN_INFO"Got data %lx\n",port_addr);
-	result = request_irq(2,(irq_handler_t) irq_handler, IRQF_DISABLED,"IPI Handler", NULL);
+	result = request_irq(9, (irq_handler_t) irq_handler, IRQF_DISABLED, "IPI Handler", NULL);
 	if(result)
 	{
 		printk(KERN_INFO"Can't get shared interrupt for keyboard\n");
 	}
-	Interrupt_Command_Regisrer_High = 0x00;
-	Interrupt_Command_Regisrer_Low = 0x32;
+	Interrupt_Command_Regisrer_High = 0x01000000;
+	Interrupt_Command_Regisrer_Low = 0x39;
 	native_apic_mem_write(0x310, Interrupt_Command_Regisrer_High);
 	native_apic_mem_write(0x300, Interrupt_Command_Regisrer_Low);
 	return result;
@@ -43,5 +43,5 @@ int init_module(void)
 
 void cleanup_module(void)
 {
-	free_irq(2, NULL);
+	free_irq(9, NULL);
 }
