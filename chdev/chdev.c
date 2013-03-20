@@ -9,7 +9,7 @@
 #define DEV_NO 66
 
 static int Device_Open = 0;
-static char devbuffer[BUF_LEN]="Hello!!!";
+static char devbuffer[BUF_LEN];
 struct semaphore mu;
 int i;
 
@@ -32,7 +32,7 @@ static ssize_t device_read(struct file *filp,char *buffer,size_t length,loff_t *
 		return 1;
 	}
 //	printk("Once read %d",length);
-	return 0;
+	return length;
 }
 
 static ssize_t device_write(struct file *file,const char *buffer, size_t length, loff_t *offset)
@@ -49,7 +49,7 @@ static ssize_t device_write(struct file *file,const char *buffer, size_t length,
 	}
 //	up(&mu);
 	printk("Once write %ld",length);
-	return 0;
+	return length;
 } 
 
 static struct file_operations fops = 
