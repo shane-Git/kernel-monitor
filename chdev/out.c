@@ -8,7 +8,7 @@ int main(void)
 	FILE *fp =NULL;
 	int k =0;
 	char str[50];
-	fp = open("/dev/chdev",O_RDWR,S_IRUSR|S_IWUSR);
+	fp = open("chdev",O_RDWR,S_IRUSR|S_IWUSR);
 	if(fp == NULL)
 	{
 		printf("Open failed.\n");

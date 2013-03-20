@@ -29,9 +29,10 @@ static ssize_t device_read(struct file *filp,char *buffer,size_t length,loff_t *
 {
 	if(copy_to_user(buffer,devbuffer,length))
 	{
-		return 1;
+		printk(KERN_INFO"Encountered Some problems with the read of device%ld\n",length);
+		return -EFAULT;
 	}
-//	printk("Once read %d",length);
+	printk("Once read %ld\n",length);
 	return length;
 }
 
@@ -48,7 +49,7 @@ static ssize_t device_write(struct file *file,const char *buffer, size_t length,
 		return 1;
 	}
 //	up(&mu);
-	printk("Once write %ld",length);
+	printk("Once write %ld\n",length);
 	return length;
 } 
 
@@ -65,7 +66,7 @@ int init_module(void)
 	register_chrdev(DEV_NO, DEVICE_NAME, &fops);
 	printk("Load chdev device into kernel.\n");
 	printk("Please use `sudo mknod chdev c 66 0`\nto create device\n");
-	sema_init(&mu,1);
+//	sema_init(&mu,1);
 	return 0;
 }
 
