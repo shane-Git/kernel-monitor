@@ -3,6 +3,7 @@
 #include <linux/fs.h>
 #include <linux/init.h>
 #include <linux/tty_driver.h>
+#include <linux/tty.h>
 #include <asm/uaccess.h>
 
 #define DEVICE_NAME "chdev"
@@ -72,9 +73,37 @@ int init_module(void)
 	{
 		return -ENOMEM;
 	}
+
+	static struct tty_operations cat_ops = 
+	{
+		.open = device_open,
+		.close = device_release,
+		.write = device_write,
+	};
+
+	cat->owner = THIS_MODULE;
+	cat->driver_name = "CAT";
+	cat->name = "tty_CAT";
+//	cat->devfs_name = "FakeCat";
+	cat->major = 240;
+	cat->type = TTY_DRIVER_TYPE_SERIAL;
+	cat->subtype = SERIAL_TYPE_NORMAL;
+	cat->flags = TTY_DRIVER_REAL_RAW;
+//	cat->init_termios = tty_std_termios;
+	cat->init_termios.c_cflag = B9600 | CS8 | CREAD | HUPCL |CLOCAL;
+	tty_set_operations(cat,&cat_ops);
+
+
 //	register_chrdev(DEV_NO, DEVICE_NAME, &fops);
-	printk("Load chdev device into kernel.\n");
-	printk("Please use `sudo mknod chdev c 66 0`\nto create device\n");
+	printk(KERN_INFO "Load chdev device into kernel.\n");
+	printk(KERN_INFO "Let's find what is in the struct %d,%d\n",cat->major);
+	int retval = 0;
+	retval = tty_register_driver(cat);
+	if(retval)
+	{
+		printk(KERN_ERR "Failed to register cat driver\n");
+		return retval;
+	}
 //	sema_init(&mu,1);
 	return 0;
 }
