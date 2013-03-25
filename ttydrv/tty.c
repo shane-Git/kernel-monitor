@@ -9,7 +9,7 @@
 #define DEVICE_NAME "chdev"
 #define BUF_LEN 1024
 #define DEV_NO 66
-#define CAT_MINORS 90
+#define CAT_MINORS 5 
 
 static int Device_Open = 0;
 static char devbuffer[BUF_LEN];
@@ -68,6 +68,7 @@ static struct file_operations fops =
 
 int init_module(void)
 {
+	int i;
 	cat = alloc_tty_driver(CAT_MINORS);
 	if(!cat)
 	{
@@ -105,11 +106,20 @@ int init_module(void)
 		return retval;
 	}
 //	sema_init(&mu,1);
+	for(i=0;i<CAT_MINORS;i++)
+	{
+		tty_register_device(cat, i, NULL);
+	}
 	return 0;
 }
 
 void cleanup_module(void)
 {
+	int i;
+	for(i=0;i<CAT_MINORS;i++)
+	{
+		tty_unregister_device(cat, i);
+	}
 	tty_unregister_driver(cat);
 	printk("Unload chdev device from kernel.\n");
 //	unregister_chrdev(DEV_NO, DEVICE_NAME);

@@ -1,0 +1,303 @@
+[  126.808847] tty: module license 'BSD' taints kernel.
+[  126.808851] Disabling lock debugging due to kernel taint
+[  126.814783] Load chdev device into kernel.
+[  126.814805] Let's find what is in the struct 240,8309
+[  126.817624] ------------[ cut here ]------------
+[  126.817696] WARNING: at /build/buildd/linux-3.5.0/fs/sysfs/dir.c:529 sysfs_add_one+0xd4/0x100()
+[  126.817711] Hardware name: VirtualBox
+[  126.817712] sysfs: cannot create duplicate filename '/devices/virtual/tty/tty_CAT0'
+[  126.817714] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.817889] Pid: 2557, comm: insmod Tainted: P           O 3.5.0-25-generic #39-Ubuntu
+[  126.817899] Call Trace:
+[  126.817949]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.817952]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.817973]  [<ffffffff81332665>] ? strlcat+0x65/0x90
+[  126.817976]  [<ffffffff811f3094>] sysfs_add_one+0xd4/0x100
+[  126.817978]  [<ffffffff811f32b8>] create_dir+0x78/0xd0
+[  126.817986]  [<ffffffff8132ca50>] ? add_uevent_var+0x100/0x100
+[  126.817989]  [<ffffffff811f3646>] sysfs_create_dir+0x86/0xe0
+[  126.817992]  [<ffffffff8132bc5c>] kobject_add_internal+0x9c/0x220
+[  126.817994]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.818038]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.818041]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.818067]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.818077]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.818079]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.818082]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.818084]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.818087]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.818107]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.818120]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.818122]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.818136]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.818139]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.818233]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.818251]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.818258]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.818260] ---[ end trace 68e367ca28836ca9 ]---
+[  126.818268] ------------[ cut here ]------------
+[  126.818275] WARNING: at /build/buildd/linux-3.5.0/lib/kobject.c:196 kobject_add_internal+0x204/0x220()
+[  126.818277] Hardware name: VirtualBox
+[  126.818278] kobject_add_internal failed for tty_CAT0 with -EEXIST, don't try to register things with the same name in the same directory.
+[  126.818279] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.818299] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.818300] Call Trace:
+[  126.818303]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.818306]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.818308]  [<ffffffff8132bdc4>] kobject_add_internal+0x204/0x220
+[  126.818311]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.818314]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.818319]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.818328]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.818337]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.818343]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.818351]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.818358]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.818366]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.818369]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.818371]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.818374]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.818377]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.818379]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.818382]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.818384]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.818392]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.818394] ---[ end trace 68e367ca28836caa ]---
+[  126.823760] ------------[ cut here ]------------
+[  126.823768] WARNING: at /build/buildd/linux-3.5.0/fs/sysfs/dir.c:529 sysfs_add_one+0xd4/0x100()
+[  126.823769] Hardware name: VirtualBox
+[  126.823771] sysfs: cannot create duplicate filename '/devices/virtual/tty/tty_CAT1'
+[  126.823772] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.823796] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.823798] Call Trace:
+[  126.823803]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.823806]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.823809]  [<ffffffff81332665>] ? strlcat+0x65/0x90
+[  126.823812]  [<ffffffff811f3094>] sysfs_add_one+0xd4/0x100
+[  126.823814]  [<ffffffff811f32b8>] create_dir+0x78/0xd0
+[  126.823816]  [<ffffffff811f3646>] sysfs_create_dir+0x86/0xe0
+[  126.823819]  [<ffffffff8132bc5c>] kobject_add_internal+0x9c/0x220
+[  126.823822]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.823826]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.823829]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.823833]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.823835]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.823837]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.823840]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.823842]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.823845]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.823848]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.823851]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.823854]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.823857]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.823860]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.823863]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.823866]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.823868] ---[ end trace 68e367ca28836cab ]---
+[  126.823901] ------------[ cut here ]------------
+[  126.823904] WARNING: at /build/buildd/linux-3.5.0/lib/kobject.c:196 kobject_add_internal+0x204/0x220()
+[  126.823905] Hardware name: VirtualBox
+[  126.823907] kobject_add_internal failed for tty_CAT1 with -EEXIST, don't try to register things with the same name in the same directory.
+[  126.823908] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.823927] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.823928] Call Trace:
+[  126.823931]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.823934]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.823936]  [<ffffffff8132bdc4>] kobject_add_internal+0x204/0x220
+[  126.823939]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.823942]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.823944]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.823947]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.823949]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.823952]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.823954]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.823956]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.823958]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.823966]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.823969]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.823972]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.823975]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.823977]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.823980]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.823982]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.823984] ---[ end trace 68e367ca28836cac ]---
+[  126.823991] ------------[ cut here ]------------
+[  126.823994] WARNING: at /build/buildd/linux-3.5.0/fs/sysfs/dir.c:529 sysfs_add_one+0xd4/0x100()
+[  126.823995] Hardware name: VirtualBox
+[  126.823996] sysfs: cannot create duplicate filename '/devices/virtual/tty/tty_CAT2'
+[  126.823997] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.824017] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.824018] Call Trace:
+[  126.824021]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.824023]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.824025]  [<ffffffff81332665>] ? strlcat+0x65/0x90
+[  126.824028]  [<ffffffff811f3094>] sysfs_add_one+0xd4/0x100
+[  126.824030]  [<ffffffff811f32b8>] create_dir+0x78/0xd0
+[  126.824033]  [<ffffffff811f3646>] sysfs_create_dir+0x86/0xe0
+[  126.824035]  [<ffffffff8132bc5c>] kobject_add_internal+0x9c/0x220
+[  126.824038]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.824040]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.824043]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.824046]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.824048]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.824051]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.824127]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.824137]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.824146]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.824156]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.824166]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.824175]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.824185]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.824195]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.824205]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.824215]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.824224]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.824229] ---[ end trace 68e367ca28836cad ]---
+[  126.824235] ------------[ cut here ]------------
+[  126.824241] WARNING: at /build/buildd/linux-3.5.0/lib/kobject.c:196 kobject_add_internal+0x204/0x220()
+[  126.824246] Hardware name: VirtualBox
+[  126.824251] kobject_add_internal failed for tty_CAT2 with -EEXIST, don't try to register things with the same name in the same directory.
+[  126.824255] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.824278] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.824283] Call Trace:
+[  126.824292]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.824302]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.824312]  [<ffffffff8132bdc4>] kobject_add_internal+0x204/0x220
+[  126.824322]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.824332]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.824346]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.824356]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.824366]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.824376]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.824385]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.824394]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.824404]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.824413]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.824423]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.824433]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.824443]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.824452]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.824462]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.824472]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.824481]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.824486] ---[ end trace 68e367ca28836cae ]---
+[  126.824495] ------------[ cut here ]------------
+[  126.824502] WARNING: at /build/buildd/linux-3.5.0/fs/sysfs/dir.c:529 sysfs_add_one+0xd4/0x100()
+[  126.824506] Hardware name: VirtualBox
+[  126.824511] sysfs: cannot create duplicate filename '/devices/virtual/tty/tty_CAT3'
+[  126.824516] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.824538] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.824543] Call Trace:
+[  126.824553]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.824562]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.824572]  [<ffffffff81332665>] ? strlcat+0x65/0x90
+[  126.824581]  [<ffffffff811f3094>] sysfs_add_one+0xd4/0x100
+[  126.824591]  [<ffffffff811f32b8>] create_dir+0x78/0xd0
+[  126.824601]  [<ffffffff811f3646>] sysfs_create_dir+0x86/0xe0
+[  126.824611]  [<ffffffff8132bc5c>] kobject_add_internal+0x9c/0x220
+[  126.824708]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.824718]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.824728]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.824737]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.824748]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.824758]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.824768]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.824777]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.824786]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.824796]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.824805]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.824815]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.824825]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.824835]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.824845]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.824854]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.824864]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.824869] ---[ end trace 68e367ca28836caf ]---
+[  126.824874] ------------[ cut here ]------------
+[  126.824880] WARNING: at /build/buildd/linux-3.5.0/lib/kobject.c:196 kobject_add_internal+0x204/0x220()
+[  126.824885] Hardware name: VirtualBox
+[  126.824890] kobject_add_internal failed for tty_CAT3 with -EEXIST, don't try to register things with the same name in the same directory.
+[  126.824894] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.824924] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.824928] Call Trace:
+[  126.824938]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.824948]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.824958]  [<ffffffff8132bdc4>] kobject_add_internal+0x204/0x220
+[  126.824968]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.824978]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.824987]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.824997]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.825007]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.825016]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.825026]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.825035]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.825045]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.825054]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.825064]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.825073]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.825083]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.825093]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.825103]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.825112]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.825121]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.825127] ---[ end trace 68e367ca28836cb0 ]---
+[  126.825135] ------------[ cut here ]------------
+[  126.825141] WARNING: at /build/buildd/linux-3.5.0/fs/sysfs/dir.c:529 sysfs_add_one+0xd4/0x100()
+[  126.825146] Hardware name: VirtualBox
+[  126.825151] sysfs: cannot create duplicate filename '/devices/virtual/tty/tty_CAT4'
+[  126.825156] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.825178] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.825183] Call Trace:
+[  126.825193]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.825202]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.825212]  [<ffffffff81332665>] ? strlcat+0x65/0x90
+[  126.825223]  [<ffffffff811f3094>] sysfs_add_one+0xd4/0x100
+[  126.825232]  [<ffffffff811f32b8>] create_dir+0x78/0xd0
+[  126.825242]  [<ffffffff811f3646>] sysfs_create_dir+0x86/0xe0
+[  126.825252]  [<ffffffff8132bc5c>] kobject_add_internal+0x9c/0x220
+[  126.825261]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.825271]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.825281]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.825291]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.825300]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.825310]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.825320]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.825329]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.825338]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.825348]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.825357]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.825367]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.825377]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.825387]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.825396]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.825406]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.825416]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.825421] ---[ end trace 68e367ca28836cb1 ]---
+[  126.825426] ------------[ cut here ]------------
+[  126.825432] WARNING: at /build/buildd/linux-3.5.0/lib/kobject.c:196 kobject_add_internal+0x204/0x220()
+[  126.825437] Hardware name: VirtualBox
+[  126.825447] kobject_add_internal failed for tty_CAT4 with -EEXIST, don't try to register things with the same name in the same directory.
+[  126.825452] Modules linked in: tty(PO+) vboxvideo(O) drm vboxsf(O) snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_seq_midi snd_rawmidi snd_seq_midi_event snd_seq microcode snd_timer snd_seq_device joydev psmouse serio_raw snd i2c_piix4 soundcore snd_page_alloc vboxguest(O) bnep rfcomm parport_pc bluetooth ppdev mac_hid binfmt_misc lp parport hid_generic usbhid hid e1000
+[  126.825474] Pid: 2557, comm: insmod Tainted: P        W  O 3.5.0-25-generic #39-Ubuntu
+[  126.825479] Call Trace:
+[  126.825489]  [<ffffffff81051bbf>] warn_slowpath_common+0x7f/0xc0
+[  126.825499]  [<ffffffff81051cb6>] warn_slowpath_fmt+0x46/0x50
+[  126.825508]  [<ffffffff8132bdc4>] kobject_add_internal+0x204/0x220
+[  126.825518]  [<ffffffff8132c117>] kobject_add+0x67/0xc0
+[  126.825528]  [<ffffffff8168204d>] ? mutex_lock+0x1d/0x50
+[  126.825538]  [<ffffffff81338847>] ? kvasprintf+0x57/0x90
+[  126.825548]  [<ffffffff8141db66>] device_add+0x106/0x6c0
+[  126.825570]  [<ffffffff8142c65d>] ? pm_runtime_init+0xdd/0xf0
+[  126.825573]  [<ffffffff8141e13e>] device_register+0x1e/0x30
+[  126.825575]  [<ffffffff8141e24b>] device_create_vargs+0xfb/0x130
+[  126.825577]  [<ffffffff81422f42>] ? kobj_map+0x82/0x1a0
+[  126.825579]  [<ffffffff8141e2b1>] device_create+0x31/0x40
+[  126.825582]  [<ffffffff81185cd0>] ? mount_fs+0x1b0/0x1b0
+[  126.825584]  [<ffffffff813e1a51>] tty_register_device+0x91/0x120
+[  126.825587]  [<ffffffff813e1c8d>] ? tty_register_driver+0x15d/0x300
+[  126.825590]  [<ffffffffa01e91c0>] init_module+0xf0/0x110 [tty]
+[  126.825592]  [<ffffffffa01e90d0>] ? device_write+0x90/0x90 [tty]
+[  126.825595]  [<ffffffff8100212a>] do_one_initcall+0x12a/0x180
+[  126.825598]  [<ffffffff810b5c90>] sys_init_module+0xc0/0x220
+[  126.825600]  [<ffffffff8168c969>] system_call_fastpath+0x16/0x1b
+[  126.825602] ---[ end trace 68e367ca28836cb2 ]---
