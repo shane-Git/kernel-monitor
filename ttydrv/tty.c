@@ -110,6 +110,7 @@ int init_module(void)
 
 void cleanup_module(void)
 {
+	tty_unregister_driver(cat);
 	printk("Unload chdev device from kernel.\n");
 //	unregister_chrdev(DEV_NO, DEVICE_NAME);
 }
