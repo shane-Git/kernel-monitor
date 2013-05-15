@@ -26,7 +26,7 @@ static ssize_t device_write(struct file *file, const char *buffer, size_t length
 static struct console ram_console =
 {
 	.name = "RamConsole",
-//	.write = device_write,
+	.write = device_write,
 	.flags = CON_PRINTBUFFER | CON_ENABLED,
 	.index = -1,
 };

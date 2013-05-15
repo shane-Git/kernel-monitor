@@ -1,0 +1,1 @@
+cmd_/home/zhangx/kernel-monitor/console/console.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-2.6.32-5-common/scripts/module-common.lds --build-id -o /home/zhangx/kernel-monitor/console/console.ko /home/zhangx/kernel-monitor/console/console.o /home/zhangx/kernel-monitor/console/console.mod.o
