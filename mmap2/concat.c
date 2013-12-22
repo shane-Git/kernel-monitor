@@ -16,7 +16,7 @@ int main(void)
 	}
 
 	unsigned int LengthOfMap = 0x8000;
-	mmap_base = mmap(NULL, LengthOfMap, PROT_READ, MAP_SHARED, fd, 0xb8000);
+	mmap_base = mmap(NULL, LengthOfMap, PROT_READ, MAP_SHARED, fd, 0x98000);
 
 	if( mmap_base == 0 )
 	{

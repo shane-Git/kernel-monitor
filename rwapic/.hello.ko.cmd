@@ -1,0 +1,1 @@
+cmd_/home/zhangx/kernel-monitor/rwapic/hello.ko := ld -r -m elf_x86_64  --build-id -o /home/zhangx/kernel-monitor/rwapic/hello.ko /home/zhangx/kernel-monitor/rwapic/hello.o /home/zhangx/kernel-monitor/rwapic/hello.mod.o
